@@ -1,0 +1,100 @@
+:root {
+  --bg-main: #2a2a35;        /* 60% NightSky */
+  --surface-card: #b98391;   /* 30% FoxGlove */
+  --accent-pop: #dadacb;     /* 10% Accent */
+  --text-primary: #f4f4f4;
+  --header-height: 60px;
+  --sidebar-width: 180px;
+}
+
+/* 1. Universal Reset (Fixed '-' to '*') */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. Lock Body to Screen Height */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, sans-serif;
+  height: 100vh;
+  overflow: hidden; /* Stops the body/window itself from scrolling */
+}
+
+/* 3. Fixed Top Header Bar */
+.top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--bg-main);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  z-index: 100;
+}
+
+.top-header h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* 4. App Layout Container */
+.app-layout {
+  display: flex;
+  height: calc(100vh - var(--header-height));
+  margin-top: var(--header-height);
+  width: 100%;
+}
+
+/* 5. Fixed Sidebar Styling */
+.sidebar-nav {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  background-color: var(--surface-card);
+  padding: 1.5rem 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  height: 100%;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-primary);
+  display: block;
+}
+.nav-icon-btn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.nav-link.active .nav-icon-btn {
+  background-color: var(--accent-pop);
+  color: #ffffff;
+}
+
+/* 6. Scrollable Content Area */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  height: 100%;
+  overflow-y: auto; /* This allows ONLY main-content to scroll! */
+}
