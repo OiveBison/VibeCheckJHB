@@ -8,17 +8,20 @@
     <link rel="stylesheet" href="CSS/venueprofile.css">
 </head>
 <body>
-    <!--Top header bar-->
-     <header class="top-header">
+    <!-- Top Header Bar -->
+    <header class="top-header">
        <div class="brand-logo">
-        <h1>VIBECHECK <span>JHB</span></h1>
+         <h1>VIBECHECK <span>JHB</span></h1>
        </div>
-       <!--Header icon placeholders-->
-      <div class="header-actions">
-        <button class="icon-btn" aria-label="Favourites">&#x2661;</button>
-        <button class="icon-btn" aria-label="Menu">&#9776</button>
-      </div>
-      <!--Sidebar nav-->
+       <div class="header-actions">
+         <button class="icon-btn" aria-label="Favourites">&#x2661;</button>
+         <button class="icon-btn" aria-label="Menu">&#9776;</button>
+       </div>
+    </header>
+
+    <!-- App Layout Container -->
+    <div class="app-layout">
+      <!-- Sidebar Nav -->
       <nav class="sidebar-nav">
         <ul>
             <li><a href="index.html" class="nav-link"><button class="nav-icon-btn">⌂</button></a></li>
@@ -27,28 +30,30 @@
             <li><a href="profile.html" class="nav-link active"><button class="nav-icon-btn">◯</button></a></li>
         </ul>
       </nav>
+
+      <!-- Main Content -->
       <main class="main-content">
         <section class="profile-header">
-            <div profile-avatar></div>
-            <h2>@username</h2>
-            <p>Johannesburg, SA</p>
+            <div class="profile-avatar"></div>
+            <h2 id="profile-username">@username</h2>
+            <p id="profile-location">Johannesburg, SA</p>
         </section>
+
         <section class="profile-stats">
             <div class="stat-item">
-                <span>12
-                  <p>Vibes Saved</p>
-                </span>
+                <span id="saved-vibes-count">0</span>
+                <p>Vibes Saved</p>
             </div>
             <div class="stat-item">
-                <span>4</span>
+                <span id="reviews-count">0</span>
                 <p>Reviews</p>
             </div>
             <div class="stat-item">
-                <span>JHB</span>
+                <span id="user-city">JHB</span>
                 <p>City</p>
             </div>
         </section>
       </main>
-     </header>
+    </div>
 </body>
 </html>

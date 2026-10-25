@@ -1,3 +1,10 @@
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    width:100%;
+    margin: 0 auto;
+}
+
 .search-banner {
   background-color: var(--surface-card);
   padding: 1.5rem;
@@ -17,13 +24,11 @@
   margin-bottom: 1.5rem;
 }
 
-.section-badge h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
+.section-badge h3{
+    font-size: 1.2rem;
+    font-weight: 600;
 }
-
 .vibe-card {
-  width: 100%;
   background-color: var(--surface-card);
   border-radius: 12px;
   overflow: hidden;
