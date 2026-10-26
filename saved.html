@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saved Vibes</title>
     <link rel="stylesheet" href="CSS/main.css">
-    <link rel="stylesheet" href="CSS/bookmarked.css">
+    <link rel="stylesheet" href="CSS/saved.css">
+    <script src="JS/main.js" defer></script>
 </head>
 <body>
    <!--Top header bar-->
@@ -18,6 +19,22 @@
         <button class="icon-btn" aria-label="Favourites">&#x2661;</button>
         <button class="icon-btn" aria-label="Menu">&#9776</button>
       </div>
+      <!-- Backdrop Overlay -->
+    <div id="drawer-overlay" class="drawer-overlay"></div>
+      <!-- Sliding Side Menu Drawer -->
+    <aside id="menu-drawer" class="menu-drawer">
+      <div class="drawer-header">
+      <h3>Menu</h3>
+    <button id="close-drawer-btn" class="close-btn" aria-label="Close Menu">&times;</button>
+    </div>
+  
+     <ul class="drawer-nav">
+      <li><a href="#settings">⚙️ Settings</a></li>
+      <li><a href="#about">ℹ️ About VibeCheck</a></li>
+      <li><a href="#contact">✉️ Contact Us</a></li>
+      <li><a href="#help">❓ Help & FAQ</a></li>
+       </ul>
+       </aside>
     </header>   
       <!--Sidebar nav-->
       <div class="app-layout">
