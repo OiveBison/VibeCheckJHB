@@ -1,8 +1,12 @@
 .main-content {
     flex: 1;
-    padding: 2rem;
-    width:100%;
-    margin: 0 auto;
+    margin-left: 70px;
+    padding: 2.5rem;
+    width:calc(100vh - 70px);
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+   
+
 }
 
 .search-banner {
