@@ -69,23 +69,89 @@ body {
   margin-top: var(--header-height);
   width: 100%;
 }
-
-/* 5. Fixed Sidebar Styling */
-.sidebar-nav {
-  width: var(--sidebar-width);
-  flex-shrink: 0;
+/*Side bar with on hover styling*/
+.sidebar{
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: 70px; /*a compact bar with only icons showing */
+  height: calc(100vh - var(--header-height));
   background-color: var(--surface-card);
-  padding: 1.5rem 1rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  height: 100%;
+  border-right: 1px solid rgba(255, 255, 255, 0.01);
+  padding: 1.5rem 0.75rem;
+  z-index: 900;
+  overflow: hidden;
+  transition width: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-.sidebar-nav ul {
+ /*On hover expand*/
+ .sidebar{
+  width: 180px;
+ }
+ sidebar-nav ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-primary, #f4f4f4);
+  display: block;
+  white-space: nowrap; /* Prevents text from wrapping awkwardly during transition */
+}
+
+.nav-icon-btn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.nav-icon-btn .icon {
+  font-size: 1.2rem;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Hide text labels by default, fade them in on sidebar hover */
+.nav-text {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.sidebar-nav:hover .nav-text {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-link.active .nav-icon-btn {
+  background-color: var(--accent-pop, #dadacb);
+  color: #2a2a35;
+}
+
+.nav-icon-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Adjust main content margin-left to match the collapsed sidebar width */
+.main-content {
+  flex: 1;
+  margin-left: 70px; /
+  padding: 2rem;
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+}
+
 
 .nav-link {
   text-decoration: none;
