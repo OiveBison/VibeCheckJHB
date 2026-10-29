@@ -73,7 +73,7 @@ body {
   left: 0;
   width: var(--sidebar-width-collapsed);
   height: calc(100vh - var(--header-height));
-  background-color: var(--surface-card);
+  background-color:var(--surface-card);
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   padding: 2rem 0.75rem;
   z-index: 900;
@@ -283,4 +283,32 @@ body {
   align-items: center;
   justify-content: center;
 }
- background: none !important;
+/* force overiding unwated backgrouds*/
+header.top-header button.header-icon-btn,
+.header-actions button {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  
+}
+
+header.top-header button.header-icon-btn:hover,
+.header-actions button:hover {
+  background: none !important;
+  background-color: transparent !important;
+  opacity: 0.7;
+}
+header.top-header .header-icon-btn:hover,
+.header-actions button:hover {
+  color: #edecec;
+  background: none !important;
+  background-color: transparent !important;
+  transform: scale(1.05);
+}
+
+header.top-header .header-icon-btn:active,
+.header-actions button:active {
+  transform: scale(0.95);
+}
