@@ -1,0 +1,202 @@
+/* Ensure main content respects the 70px collapsed sidebar offset */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width-collapsed, 70px);
+  padding: 2.5rem;
+  height: calc(100vh - var(--header-height, 60px));
+  overflow-y: auto;
+}
+
+.search-banner {
+  background-color: var(--surface-card, #b98391);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.search-banner h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+  color: var(--text-primary, #f4f4f4);
+}
+
+.section-badge {
+  background-color: var(--surface-card, #b98391);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.section-badge h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary, #f4f4f4);
+}
+
+.vibe-card {
+  background-color: var(--surface-card, #b98391);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  position: relative;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.vibe-card:hover {
+  transform: translateY(-2px);
+}
+
+.media-container {
+  width: 100%;
+  height: 400px;
+  background-color: #000;
+  position: relative;
+}
+
+.media-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.play-btn:hover {
+  background-color: var(--accent-pop, #dadacb);
+  color: #2a2a35;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/*grid system*/
+/* --- Explore Search Section --- */
+.explore-search {
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.explore-search input[type="search"] {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  background-color: var(--surface-card, #1e1e24);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: var(--text-primary, #ffffff);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.explore-search input[type="search"]:focus {
+  border-color: var(--accent-pop, #ff5e7e);
+  box-shadow: 0 0 0 3px rgba(255, 94, 126, 0.15);
+}
+
+.explore-search input[type="search"]::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* --- Instagram-Style Grid System --- */
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem; /* Tight, crisp spacing like Instagram */
+  width: 100%;
+  padding-bottom: 3rem;
+}
+
+/* Feature tile highlight (Instagram bento pattern every 5th item) */
+.explore-grid .venue-card:nth-child(5n + 3) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* --- Dynamic Card Skeleton (Injected via JS) --- */
+.venue-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background-color: var(--surface-card, #1e1e24);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.venue-card:hover {
+  transform: scale(0.98);
+}
+
+/* Image / Video Layer */
+.venue-card img,
+.venue-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Hover Overlay Info (Instagram overlay state) */
+.venue-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  padding: 1rem;
+  text-align: center;
+  backdrop-filter: blur(2px);
+}
+
+.venue-card:hover .venue-card-overlay {
+  opacity: 1;
+}
+
+.venue-card-overlay h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.venue-card-overlay p {
+  font-size: 0.8rem;
+  color: var(--accent-pop, #ff5e7e);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .explore-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  /* Adjust featured tile for 2-column mobile layout */
+  .explore-grid .venue-card:nth-child(5n + 3) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}

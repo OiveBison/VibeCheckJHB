@@ -1,0 +1,175 @@
+/* --- Saved Page Layout & Horizontal Track --- */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-x: hidden; /* Prevent body horizontal scroll */
+}
+
+.saved-header {
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+.saved-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.saved-header p {
+  font-size: 0.95rem;
+  opacity: 0.7;
+  margin-top: 0.3rem;
+}
+
+/* Horizontal Slider Container */
+.saved-slider-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 0 2rem 0;
+}
+
+.saved-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Individual Saved Card Styling */
+.saved-card {
+  width: 320px;
+  height: 420px;
+  background-color: var(--surface-card);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  flex-shrink: 0;
+}
+
+.saved-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Card background image / video mockup layer */
+.saved-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(42,42,53,0.1) 40%, rgba(42,42,53,0.95) 90%);
+  z-index: 1;
+}
+
+/* Content inside card */
+.saved-info, .card-actions {
+  position: relative;
+  z-index: 2;
+}
+
+.saved-info h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.saved-info p {
+  font-size: 0.85rem;
+  color: var(--accent-pop);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+
+/* Remove / Action Button */
+.remove-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.remove-btn:hover {
+  background-color: var(--accent-pop);
+  color: var(--bg-main);
+  border-color: var(--accent-pop);
+  transform: scale(1.02);
+}
+
+/*saved vibes page*/
+document.addEventListener("DOMContentLoaded", async () => {
+  const track = document.getElementById("saved-track");
+  if (!track) return;
+
+  try {
+    // 1. Direct call to your real API endpoint
+    const response = await fetch('/api/user/saved-vibes', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Authorization': 'Bearer YOUR_TOKEN' if needed
+      }
+    });
+
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    
+    const savedVibes = await response.json();
+
+    // 2. Handle empty state gracefully
+    if (!savedVibes || savedVibes.length === 0) {
+      track.innerHTML = `<p class="empty-state">No saved vibes yet. Explore the city to add some!</p>`;
+      return;
+    }
+
+    // 3. Clear container and dynamically render real data
+    track.innerHTML = "";
+    savedVibes.forEach(vibe => {
+      const card = document.createElement("article");
+      card.className = "saved-card";
+      card.innerHTML = `
+        <div class="saved-info">
+          <h3>${vibe.name}</h3>
+          <p>${vibe.location}</p>
+        </div>
+        <button class="remove-btn" data-id="${vibe.id}" aria-label="Remove Bookmark">Remove</button>
+      `;
+      track.appendChild(card);
+    });
+
+    // 4. Trigger GSAP entrance animations once real DOM elements are populated
+    if (typeof gsap !== "undefined") {
+      gsap.from(".saved-card", {
+        opacity: 0,
+        y: 40,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power3.out"
+      });
+    }
+
+  } catch (error) {
+    console.error("Failed to fetch saved vibes:", error);
+    track.innerHTML = `<p class="error-state">Could not load saved vibes. Please check your connection.</p>`;
+  }
+});

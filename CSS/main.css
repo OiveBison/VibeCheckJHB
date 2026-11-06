@@ -1,0 +1,314 @@
+:root {
+  --bg-main: #2a2a35;        /* 60% NightSky */
+  --surface-card: #b98391;   /* 30% FoxGlove */
+  --accent-pop: #dadacb;     /* 10% Accent */
+  --text-primary: #f4f4f4;
+  --header-height: 60px;
+  --sidebar-width-collapsed: 70px;
+  --sidebar-width-expanded: 200px;
+}
+
+/* 1. Universal Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. Base Page Setup */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 3. Top Header Bar */
+.top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--bg-main);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  z-index: 1000;
+}
+
+.top-header h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.top-header h1 span {
+  color: var(--accent-pop);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background-color: transparent;
+}
+
+/* 4. App Layout Container */
+.app-layout {
+  display: flex;
+  height: calc(100vh - var(--header-height));
+  margin-top: var(--header-height);
+  width: 100%;
+}
+
+/* 5. Sleek Expandable Sidebar */
+.sidebar-nav, .sidebar {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: var(--sidebar-width-collapsed);
+  height: calc(100vh - var(--header-height));
+  background-color:var(--surface-card);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2rem 0.75rem;
+  z-index: 900;
+  overflow: hidden;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Expand smoothly on hover */
+.sidebar-nav:hover, .sidebar:hover {
+  width: var(--sidebar-width-expanded);
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem; /* Increased gap for breathing room between icons */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-primary);
+  display: block;
+  white-space: nowrap;
+}
+
+.nav-icon-btn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.8rem;
+  border-radius: 10px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.nav-icon-btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateX(3px); /* Subtle hover lift */
+}
+
+.nav-icon-btn .icon {
+  font-size: 1.25rem;
+  min-width: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Active Nav State (Clean Pill Accent) */
+.nav-link.active .nav-icon-btn {
+  background-color: var(--accent-pop);
+  color: #2a2a35;
+  font-weight: 600;
+}
+
+/* Text Labels - Fade In On Hover */
+.nav-text {
+  font-size: 0.95rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.sidebar-nav:hover .nav-text,
+.sidebar:hover .nav-text {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 6. Main Content Area */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width-collapsed);
+  padding: 2.5rem;
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+}
+
+/* 7. Profile Stats Grid */
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  flex: 1;
+  background-color: var(--bg-main);
+  padding: 1.25rem 1rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.stat-item span {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-pop);
+}
+
+.stat-item p {
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  opacity: 0.8;
+}
+
+/* 8. Slide Menu Drawer & Overlay */
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1500;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu-drawer {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100vh;
+  background-color: var(--bg-main);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.8rem;
+  z-index: 2000;
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -4px 0 25px rgba(0, 0, 0, 0.4);
+}
+
+.menu-drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.drawer-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.drawer-nav a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1rem;
+  display: block;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.drawer-nav a:hover {
+  transform: translateX(4px);
+}
+ /*Alingn menu icons with text*/
+ .drawer-nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.drawer-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* force overiding unwated backgrouds*/
+header.top-header button.header-icon-btn,
+.header-actions button {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  
+}
+
+header.top-header button.header-icon-btn:hover,
+.header-actions button:hover {
+  background: none !important;
+  background-color: transparent !important;
+  opacity: 0.7;
+}
+header.top-header .header-icon-btn:hover,
+.header-actions button:hover {
+  color: #edecec;
+  background: none !important;
+  background-color: transparent !important;
+  transform: scale(1.05);
+}
+
+header.top-header .header-icon-btn:active,
+.header-actions button:active {
+  transform: scale(0.95);
+}
