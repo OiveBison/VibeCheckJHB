@@ -73,9 +73,9 @@ body {
   left: 0;
   width: var(--sidebar-width-collapsed);
   height: calc(100vh - var(--header-height));
-  background-color:var(--surface-card);
+  background: rgba(24, 24, 27, 0.4);
   border-right: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 2rem 0.75rem;
+
   z-index: 900;
   overflow: hidden;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
