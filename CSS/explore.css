@@ -1,10 +1,12 @@
-/* Ensure main content respects the 70px collapsed sidebar offset */
+/* Main content layout matching global design */
 .main-content {
-  flex: 1;
-  margin-left: var(--sidebar-width-collapsed, 70px);
-  padding: 2.5rem;
-  height: calc(100vh - var(--header-height, 60px));
-  overflow-y: auto;
+    flex: 1;
+    margin-left: 70px;
+    padding: 2.5rem;
+    width: calc(100% - 70px);
+    min-height: 100vh;
+    overflow-y: auto;
+    background: radial-gradient(circle at 80% 20%, rgba(24, 24, 27, 0.95), rgba(9, 9, 11, 0.98));
 }
 
 .search-banner {
@@ -87,39 +89,42 @@
 }
 
 /*grid system*/
-/* --- Explore Search Section --- */
+/* Explore Search Section  */
 .explore-search {
   margin-bottom: 2rem;
   width: 100%;
-  max-width: 600px;
+  max-width: 650px;
 }
 
 .explore-search input[type="search"] {
-  width: 100%;
-  padding: 0.85rem 1.25rem;
-  background-color: var(--surface-card, #1e1e24);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  color: var(--text-primary, #ffffff);
-  font-size: 0.95rem;
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: rgba(24, 24, 27, 0.6);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .explore-search input[type="search"]:focus {
-  border-color: var(--accent-pop, #ff5e7e);
-  box-shadow: 0 0 0 3px rgba(255, 94, 126, 0.15);
+  border-color: #22c55e;
+ box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2), 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .explore-search input[type="search"]::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.45);
 }
 
-/* --- Instagram-Style Grid System --- */
+/* Instagram-Style Grid Systems */
 .explore-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem; /* Tight, crisp spacing like Instagram */
+  gap: 1rem;
   width: 100%;
   padding-bottom: 3rem;
 }
@@ -134,16 +139,20 @@
 .venue-card {
   position: relative;
   aspect-ratio: 1 / 1;
-  background-color: var(--surface-card, #1e1e24);
-  border-radius: 8px;
+  background: rgba(30, 30, 35, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.venue-card:hover {
-  transform: scale(0.98);
+.venue-card:hover,
+.venue-card:focus {
+ transform: translateY(-4px);
+    outline: none;
 }
 
 /* Image / Video Layer */
@@ -153,6 +162,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s ease;
 }
 
 /* Hover Overlay Info (Instagram overlay state) */
@@ -160,6 +170,8 @@
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -184,7 +196,7 @@
 
 .venue-card-overlay p {
   font-size: 0.8rem;
-  color: var(--accent-pop, #ff5e7e);
+color: #a1a1aa;
 }
 
 /* --- Responsive Adjustments --- */
