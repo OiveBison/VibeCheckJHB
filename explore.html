@@ -17,19 +17,23 @@
        </div>
        <!--Header icon placeholders-->
       <div class="header-actions">
-      <button class="icon-btn" aria-label="Activity"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-      </svg></button>
-      <button class="icon-btn" aria-label="Menu" id="menu-toggle-btn"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-      </svg></button>
+      <button class="icon-btn" aria-label="Reservations" id="reservations-toggle-btn">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+        </button>
+      <button class="icon-btn" aria-label="Menu" id="menu-toggle-btn">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
     </div>
       <!-- Backdrop Overlay -->
     <div id="drawer-overlay" class="drawer-overlay"></div>  
     <!-- Sliding Side Menu Drawer -->
-<aside id="menu-drawer" class="menu-drawer">
+<aside id="menu-drawer" class="menu-drawer" aria-hidden="true">
   <div class="drawer-header">
     <h3>Menu</h3>
     <button id="close-drawer-btn" class="close-btn" aria-label="Close Menu">&times;</button>
