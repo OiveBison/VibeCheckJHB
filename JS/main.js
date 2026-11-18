@@ -63,38 +63,33 @@ window.VibeStorage = {
 };
 
 // --- SHARED UI: Hamburger Menu & Heart Reservations Drawers ---
+// --- SHARED UI: Bulletproof Hamburger Menu & Heart Reservations Drawers ---
 document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('drawer-overlay');
-
-    // Hamburger Menu Elements
-    const menuBtn = document.getElementById('menu-toggle-btn') || document.querySelector('button[aria-label="Menu"]');
     const menuDrawer = document.getElementById('menu-drawer');
-    const closeMenuBtn = document.getElementById('close-menu-btn') || document.getElementById('close-drawer-btn');
-
-    // Heart Reservations Elements
-    const resBtn = document.getElementById('reservations-toggle-btn') || document.querySelector('button[aria-label="Activity"]');
     const resDrawer = document.getElementById('reservations-drawer');
-    const closeResBtn = document.getElementById('close-reservations-btn');
     const resList = document.getElementById('reservations-list');
 
     function closeAllDrawers() {
-        menuDrawer?.classList.remove('open');
-        menuDrawer?.setAttribute('aria-hidden', 'true');
-        resDrawer?.classList.remove('open');
-        resDrawer?.setAttribute('aria-hidden', 'true');
-        overlay?.classList.remove('active');
+        document.querySelectorAll('.menu-drawer').forEach(drawer => {
+            drawer.classList.remove('open');
+            drawer.setAttribute('aria-hidden', 'true');
+        });
+        if (overlay) overlay.classList.remove('active');
     }
 
     function openMenuDrawer() {
         closeAllDrawers();
-        menuDrawer?.classList.add('open');
-        menuDrawer?.setAttribute('aria-hidden', 'false');
-        overlay?.classList.add('active');
+        if (menuDrawer) {
+            menuDrawer.classList.add('open');
+            menuDrawer.setAttribute('aria-hidden', 'false');
+        }
+        if (overlay) overlay.classList.add('active');
     }
 
     function renderReservationsDrawer() {
         if (!resList) return;
-        const reservations = window.VibeStorage.getReservations();
+        const reservations = window.VibeStorage ? window.VibeStorage.getReservations() : [];
         resList.innerHTML = '';
 
         if (reservations.length === 0) {
@@ -113,9 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
             div.innerHTML = `
                 <h4>${item.venueName}</h4>
                 <p>${item.bookedDate}</p>
-                <button class="cancel-res-btn" data-id="${item.id}">Cancel Reservation</button>
+                <button type="button" class="cancel-res-btn" data-id="${item.id}">Cancel Reservation</button>
             `;
-            div.querySelector('.cancel-res-btn').addEventListener('click', () => {
+            div.querySelector('.cancel-res-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
                 window.VibeStorage.removeReservation(item.id);
                 renderReservationsDrawer();
             });
@@ -126,20 +122,43 @@ document.addEventListener('DOMContentLoaded', () => {
     function openReservationsDrawer() {
         closeAllDrawers();
         renderReservationsDrawer();
-        resDrawer?.classList.add('open');
-        resDrawer?.setAttribute('aria-hidden', 'false');
-        overlay?.classList.add('active');
+        if (resDrawer) {
+            resDrawer.classList.add('open');
+            resDrawer.setAttribute('aria-hidden', 'false');
+        }
+        if (overlay) overlay.classList.add('active');
     }
 
-    menuBtn?.addEventListener('click', openMenuDrawer);
-    closeMenuBtn?.addEventListener('click', closeAllDrawers);
+    // Global delegated click listener so close buttons & overlay NEVER get stuck
+    document.addEventListener('click', (e) => {
+        // Open Menu
+        if (e.target.closest('#menu-toggle-btn') || e.target.closest('button[aria-label="Menu"]')) {
+            e.preventDefault();
+            openMenuDrawer();
+            return;
+        }
 
-    resBtn?.addEventListener('click', openReservationsDrawer);
-    closeResBtn?.addEventListener('click', closeAllDrawers);
+        // Open Reservations
+        if (e.target.closest('#reservations-toggle-btn') || e.target.closest('button[aria-label="Reservations"]') || e.target.closest('button[aria-label="Activity"]')) {
+            e.preventDefault();
+            openReservationsDrawer();
+            return;
+        }
 
-    overlay?.addEventListener('click', closeAllDrawers);
+        // Close on ANY close button (×), overlay click, or drawer nav link click
+        if (
+            e.target.closest('.close-btn') ||
+            e.target.closest('#close-menu-btn') ||
+            e.target.closest('#close-reservations-btn') ||
+            e.target.closest('#close-drawer-btn') ||
+            e.target.id === 'drawer-overlay' ||
+            e.target.closest('.drawer-nav a')
+        ) {
+            closeAllDrawers();
+        }
+    });
 
-    // Accessibility: Close drawers with Escape key
+    // Close on Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeAllDrawers();
     });

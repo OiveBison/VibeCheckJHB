@@ -31,13 +31,23 @@ body {
   left: 0;
   width: 100%;
   height: var(--header-height);
-  background-color: var(--bg-main);
+  background: none;
+  background-color:transparent;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1.5rem;
   z-index: 1000;
+}
+
+.header-icon-btn {
+  background: none;
+  background-color: transparent;
+  transform: scale(0.95);
+  border: none;
+  box-shadow: none;
+
 }
 
 .top-header h1 {
@@ -56,6 +66,10 @@ body {
   align-items: center;
   gap: 1.2rem;
   background-color: transparent;
+  background: none;
+  border: none;
+  box-shadow: none;
+  transform: scale(0.95s);
 }
 
 /* 4. App Layout Container */
@@ -203,8 +217,7 @@ body {
   width: 100vw;
   height: 100vh;
   background: rgba(9, 9, 11, 0.65);
-  backdrop-filter: blur(4px);
-  z-index: 1500;
+  z-index: 1001;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -222,11 +235,10 @@ body {
   width: 320px;
   height: 100vh;
   background: rgba(24, 24, 27, 0.95);
-  backdrop-filter: blur(16px);
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1.8rem;
   z-index: 1001;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateX(100%);
   display: flex;
   flex-direction: column;
   box-shadow: -4px 0 25px rgba(0, 0, 0, 0.4);
@@ -348,24 +360,11 @@ header.top-header button.header-icon-btn,
   border: none !important;
   box-shadow: none !important;
   cursor: pointer;
-  
+ 
 }
 
-header.top-header button.header-icon-btn:hover,
-.header-actions button:hover {
-  background: none !important;
-  background-color: transparent !important;
-  opacity: 0.7;
-}
-header.top-header .header-icon-btn:hover,
-.header-actions button:hover {
-  color: #edecec;
-  background: none !important;
-  background-color: transparent !important;
-  transform: scale(1.05);
-}
 
-header.top-header .header-icon-btn:active,
-.header-actions button:active {
-  transform: scale(0.95);
-}
+
+
+
+

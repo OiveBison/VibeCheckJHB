@@ -30,6 +30,7 @@
             </svg>
         </button>
     </div>
+    </header>
       <!-- Backdrop Overlay -->
     <div id="drawer-overlay" class="drawer-overlay"></div>  
     <!-- Sliding Side Menu Drawer -->
@@ -54,7 +55,16 @@
         </span> Help & FAQ</a></li>
   </ul>
 </aside>
-    </header>  
+<!--Heart icon reservation function drawer-->
+<aside id="reservations-drawer" class="menu-drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <h3>Your Reservations</h3>
+            <button id="close-reservations-btn" class="close-btn" aria-label="Close Reservations">&times;</button>
+        </div>
+        <div id="reservations-list" class="reservations-drawer-body">
+            <!-- JS dynamically populates reservations or placeholder here -->
+        </div>
+    </aside> 
       <!--Sidebar nav-->
       <div class="app-layout">
      <nav class="sidebar-nav">

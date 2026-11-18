@@ -152,7 +152,7 @@
 .venue-card:hover,
 .venue-card:focus {
  transform: translateY(-4px);
-    outline: none;
+ outline: none;
 }
 
 /* Image / Video Layer */
