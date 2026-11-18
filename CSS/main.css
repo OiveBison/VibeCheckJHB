@@ -1,8 +1,4 @@
 :root {
-  --bg-main: #2a2a35;        /* 60% NightSky */
-  --surface-card: #b98391;   /* 30% FoxGlove */
-  --accent-pop: #dadacb;     /* 10% Accent */
-  --text-primary: #f4f4f4;
   --header-height: 60px;
   --sidebar-width-collapsed: 70px;
   --sidebar-width-expanded: 200px;
@@ -17,13 +13,12 @@
 
 /* 2. Base Page Setup */
 body {
-  background-color: var(--bg-main);
-  color: var(--text-primary);
+  background:radial-gradient(circle at 50% 15%, rgba(24, 24, 27, 0.96), rgba(9, 9, 11, 0.99));
+  color:  #f4f4f5;
   font-family: system-ui, -apple-system, sans-serif;
   height: 100vh;
   overflow: hidden;
-}
-
+} 
 /* 3. Top Header Bar */
 .top-header {
   position: fixed;
@@ -53,7 +48,7 @@ body {
 .top-header h1 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color:#f4f4f5;
   letter-spacing: 0.5px;
 }
 
@@ -70,6 +65,7 @@ body {
   border: none;
   box-shadow: none;
   transform: scale(0.95s);
+  
 }
 
 /* 4. App Layout Container */
@@ -109,7 +105,7 @@ body {
 
 .nav-link {
   text-decoration: none;
-  color: var(--text-primary);
+  color:#e4e4e7;
   display: block;
   white-space: nowrap;
 }
@@ -144,8 +140,8 @@ body {
 
 /* Active Nav State (Clean Pill Accent) */
 .nav-link.active .nav-icon-btn {
-  background-color: var(--accent-pop);
-  color: #2a2a35;
+  background-color: rgba(34, 197, 94, 0.12);
+  color:#e4e4e7;
   font-weight: 600;
 }
 
@@ -170,7 +166,9 @@ body {
   padding: 2.5rem;
   height: calc(100vh - var(--header-height));
   overflow-y: auto;
+  align-items: center;
 }
+
 
 /* 7. Profile Stats Grid */
 .profile-stats {
@@ -181,15 +179,7 @@ body {
   margin: 0 auto;
 }
 
-.stat-item {
-  flex: 1;
-  background-color: var(--bg-main);
-  padding: 1.25rem 1rem;
-  border-radius: 12px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
+
 
 .stat-item:hover {
   transform: translateY(-3px);
@@ -363,8 +353,162 @@ header.top-header button.header-icon-btn,
  
 }
 
+/* --- Instagram-Style Centered Venue Modal --- */
+.venue-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(9, 9, 11, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    z-index: 10000;
+}
 
+.venue-modal-overlay.active {
+    display: flex;
+}
 
+.venue-modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    background: rgba(24, 24, 27, 0.95);
+    border: 1px solid rgba(34, 197, 94, 0.45);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(34, 197, 94, 0.15);
+    color: #ffffff;
+}
 
+.venue-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.venue-modal-close:hover {
+    background: #22c55e;
+    color: #09090b;
+}
+
+.venue-modal-media {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.venue-modal-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.venue-modal-body {
+    padding: 1.5rem;
+}
+
+.venue-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.venue-modal-header h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+.modal-bookmark-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-bookmark-btn:hover,
+.modal-bookmark-btn.saved {
+    background: #22c55e;
+    border-color: #22c55e;
+    color: #09090b;
+}
+
+.venue-modal-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: #a1a1aa;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.venue-modal-meta p {
+    margin: 0;
+}
+
+.venue-modal-meta span {
+    color: #f43f5e;
+    font-weight: 500;
+}
+
+/* --- Header Heart Icon Reservation Badge --- */
+#reservations-toggle-btn,
+button[aria-label="Reservations"],
+button[aria-label="Activity"] {
+    position: relative;
+}
+
+.reservation-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background-color: #22c55e;
+    color: #09090b;
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 18px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+    pointer-events: none;
+    display: none;
+}
+
+.reservation-badge.visible {
+    display: inline-block;
+}
 
 

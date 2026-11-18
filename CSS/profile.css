@@ -24,12 +24,6 @@
 }
 
 /* Match the deep nightlife dark aesthetic of Home & Explore */
-body,
-.main-content {
-    background: radial-gradient(circle at 50% 15%, rgba(24, 24, 27, 0.96), rgba(9, 9, 11, 0.99)) !important;
-    color: #f4f4f5;
-    min-height: 100vh;
-}
 
 .main-content {
     flex: 1;
