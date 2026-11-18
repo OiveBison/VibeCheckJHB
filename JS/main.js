@@ -1,9 +1,10 @@
 //  Menu Drawer/sidebar
 document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.querySelector('button[aria-label="Menu"]');
-    const menuDrawer = document.getElementById('sidebarNav'); // Updated to match your sidebar ID
+    const menuDrawer = document.getElementById('sidebarNav'); // Updated to match  sidebar ID
     const drawerOverlay = document.getElementById('drawer-overlay');
-    
+    window.updateReservationBadge();
+
     if (!menuBtn) return;
 
     function toggleMenu() {
@@ -60,7 +61,7 @@ window.VibeStorage = {
         }
     },
 
-    addReservation(venue) {
+   addReservation(venue) {
         const current = this.getReservations();
         if (!current.some(r => r.id === venue.id)) {
             current.push({
@@ -68,15 +69,35 @@ window.VibeStorage = {
                 bookedDate: venue.bookedDate || "This Weekend • 8:00 PM"
             });
             localStorage.setItem(this.RES_KEY, JSON.stringify(current));
+            if (window.updateReservationBadge) window.updateReservationBadge();
         }
     },
 
     removeReservation(id) {
         const updated = this.getReservations().filter(r => r.id !== id);
         localStorage.setItem(this.RES_KEY, JSON.stringify(updated));
+        if (window.updateReservationBadge) window.updateReservationBadge();
     }
 };
 
+window.updateReservationBadge = function() {
+    const heartBtn = document.getElementById('reservations-toggle-btn') ||
+                     document.querySelector('button[aria-label="Reservations"]') ||
+                     document.querySelector('button[aria-label="Activity"]');
+    if (!heartBtn) return;
+
+    let badge = heartBtn.querySelector('.reservation-badge');
+    if (!badge) {
+        badge = document.createElement('span');
+        badge.className = 'reservation-badge';
+        badge.setAttribute('aria-live', 'polite');
+        heartBtn.appendChild(badge);
+    }
+
+    const count = window.VibeStorage ? window.VibeStorage.getReservations().length : 0;
+    badge.textContent = count;
+    badge.classList.toggle('visible', count > 0);
+};
 
 //  Shared venue detail card (Center Preview)
 
