@@ -533,5 +533,120 @@ button[aria-label="Activity"] {
 .reservation-badge.visible {
     display: inline-block;
 }
+/* --- Menu Drawer Sub-Views (Settings, About, Contact, FAQ) --- */
+.drawer-back-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #e4e4e7;
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 
+.drawer-back-btn:hover {
+    border-color: #22c55e;
+    color: #22c55e;
+}
+
+.drawer-subview {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+}
+
+.drawer-copy {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #d4d4d8;
+}
+
+.setting-row,
+.contact-card,
+.faq-item {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 0.95rem 1rem;
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.setting-row h4,
+.faq-item h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.95rem;
+    color: #ffffff;
+}
+
+.setting-row p,
+.faq-item p {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #a1a1aa;
+}
+
+.setting-pill {
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    color: #22c55e;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.setting-actions {
+    display: flex;
+    gap: 0.65rem;
+    margin-top: 0.5rem;
+}
+
+.drawer-action-btn {
+    flex: 1;
+    padding: 0.65rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+}
+
+.drawer-action-btn.danger {
+    border-color: rgba(244, 63, 94, 0.4);
+    color: #f43f5e;
+    background: rgba(244, 63, 94, 0.1);
+}
+
+.contact-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #a1a1aa;
+    margin-bottom: 0.25rem;
+}
+
+.contact-value {
+    color: #22c55e;
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+}
+
+.contact-value:hover {
+    text-decoration: underline;
+}
 
