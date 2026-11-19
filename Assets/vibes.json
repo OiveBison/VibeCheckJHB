@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ig_1",
+    "venueName": "Alto234 Rooftop",
+    "vibe": "Rooftop & Sunset Views",
+    "category": "rooftop",
+    "price": "R400 - R800",
+    "doorRules": "Booking Essential | 18+",
+    "outfitRestrictions": "Elevated Smart Casual",
+    "imageUrl": "https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=600"
+  },
+  {
+    "id": "ig_2",
+    "venueName": "Saint Rosebank",
+    "vibe": "Live DJ & Fine Dining",
+    "category": "dining",
+    "price": "R500 - R1200",
+    "doorRules": "Strict Door Policy | 21+",
+    "outfitRestrictions": "High Fashion / Formal",
+    "imageUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600"
+  },
+  {
+    "id": "ig_3",
+    "venueName": "The Marabi Club",
+    "vibe": "Live Jazz & Speakeasy",
+    "category": "jazz",
+    "price": "R300 - R700",
+    "doorRules": "Reservations Only",
+    "outfitRestrictions": "Smart Casual / Vintage",
+    "imageUrl": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600"
+  },
+  {
+    "id": "ig_4",
+    "venueName": "Zioux Sandton",
+    "vibe": "High Energy & Cocktail Bar",
+    "category": "cocktail",
+    "price": "R450 - R900",
+    "doorRules": "21+ Nightlife Policy",
+    "outfitRestrictions": "Glam / Chic (No Caps or Shorts)",
+    "imageUrl": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600"
+  },
+  {
+    "id": "ig_5",
+    "venueName": "Tiger's Milk Melrose",
+    "vibe": "Live DJ & Cocktail Bar",
+    "category": "bar",
+    "price": "R150 - R350",
+    "doorRules": "Casual / Trendy",
+    "outfitRestrictions": "No beachwear",
+    "imageUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600"
+  },
+  {
+    "id": "ig_6",
+    "venueName": "News Cafe Rosebank",
+    "vibe": "High Energy & Dining",
+    "category": "dining",
+    "price": "R200 - R450",
+    "doorRules": "Strictly 21+ after 8 PM",
+    "outfitRestrictions": "Smart casual required",
+    "imageUrl": "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=600"
+  },
+  {
+    "id": "ig_7",
+    "venueName": "Katy's Palace Bar",
+    "vibe": "Panoramic Views & Sunday Soul",
+    "category": "bar",
+    "price": "R300 - R750",
+    "doorRules": "21+ | Sunday Sessions",
+    "outfitRestrictions": "Eclectic Smart Casual",
+    "imageUrl": "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600"
+  },
+  {
+    "id": "ig_8",
+    "venueName": "Living Room Maboneng",
+    "vibe": "Eco-Rooftop & Afro-House",
+    "category": "rooftop",
+    "price": "R200 - R500",
+    "doorRules": "Table Bookings Advised | 18+",
+    "outfitRestrictions": "Afro-Chic / Street Smart",
+    "imageUrl": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600"
+  },
+  {
+    "id": "ig_9",
+    "venueName": "Clico Boutique Hotel",
+    "vibe": "Intimate Fine Dining & Wine",
+    "category": "dining",
+    "price": "R450 - R950",
+    "doorRules": "Reservations Essential",
+    "outfitRestrictions": "Refined Smart Casual",
+    "imageUrl": "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600"
+  }
+]

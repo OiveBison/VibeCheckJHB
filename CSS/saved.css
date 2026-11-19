@@ -24,20 +24,6 @@
   margin-top: 0.3rem;
 }
 
-/* Horizontal Slider Container */
-.saved-slider-container {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  padding: 1rem 0 2rem 0;
-}
-
-.saved-track {
-  display: flex;
-  gap: 2rem;
-  width: max-content;
-  will-change: transform;
-}
 
 /* Individual Saved Card Styling */
 .saved-card {

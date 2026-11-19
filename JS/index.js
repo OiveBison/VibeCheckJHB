@@ -17,6 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
             { id: "ig_4", venueName: "Zioux Sandton", vibe: "High Energy & Cocktail Bar", price: "R450 - R900", doorRules: "21+ Nightlife Policy", outfitRestrictions: "Glam / Chic (No Caps or Shorts)", imageUrl: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600" }
         ];
     }
+    function updateFeedState(message, state) {
+        if (!loader) return;
+        if (window.setFeedStatus) {
+            window.setFeedStatus(loader, message, state);
+        } else {
+            loader.style.display = "block";
+            loader.dataset.state = state;
+            loader.textContent = message;
+        }
+    }
 
     function renderCards(venues) {
         track.innerHTML = "";
@@ -108,7 +118,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    const venues = getFallbackVenueData();
-    renderCards(venues);
-    initGSAPLoop();
+    async function loadHomeVenues() {
+        updateFeedState("Loading Johannesburg vibes...", "loading");
+
+        try {
+            const venues = window.fetchVenuesAPI
+                ? await window.fetchVenuesAPI()
+                : getFallbackVenueData();
+
+            if (!Array.isArray(venues) || venues.length === 0) {
+                updateFeedState("No venues match your current vibe right now.", "empty");
+                return;
+            }
+
+            renderCards(venues);
+            if (loader) loader.dataset.state = "success";
+            initGSAPLoop();
+        } catch (err) {
+            console.error("Home feed error:", err);
+            updateFeedState("Couldn't load venue listings right now. Please refresh and try again.", "error");
+        }
+    }
+
+    loadHomeVenues();
 });
